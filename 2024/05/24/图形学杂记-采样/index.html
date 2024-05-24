@@ -16,16 +16,16 @@
   <meta name="author" content="CoolDoggo">
   <meta name="keywords" content="">
   
-    <meta name="description" content="1.PDF &amp; CDF 概率密度函数(Probability Density Function, PDF)：描述连续随机变量在某个取值范围内的概率分布的函数 - 某个位置处出现的概率，通常用f(x)、p(x)或pdf表示 \[ \int f(x)\text{d}x&#x3D;1 \] 累积分布函数(Cumulative Distribution Function, CDF)：描述随机变量小于等于某个">
+    <meta name="description" content="采样 1. PDF &amp; CDF 概率密度函数(Probability Density Function, PDF)：描述连续随机变量在某个取值范围内的概率分布的函数 - 某个位置处出现的概率，通常用f(x)、p(x)或pdf表示 \[ \int f(x)\text{d}x&#x3D;1 \] 累积分布函数(Cumulative Distribution Function, CDF)：描述随机变量小于">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[图形学杂记] 采样">
 <meta property="og:url" content="https://shuaigougou5545.github.io/2024/05/24/%E5%9B%BE%E5%BD%A2%E5%AD%A6%E6%9D%82%E8%AE%B0-%E9%87%87%E6%A0%B7/index.html">
 <meta property="og:site_name" content="CoolDoggo&#39;s Blog">
-<meta property="og:description" content="1.PDF &amp; CDF 概率密度函数(Probability Density Function, PDF)：描述连续随机变量在某个取值范围内的概率分布的函数 - 某个位置处出现的概率，通常用f(x)、p(x)或pdf表示 \[ \int f(x)\text{d}x&#x3D;1 \] 累积分布函数(Cumulative Distribution Function, CDF)：描述随机变量小于等于某个">
+<meta property="og:description" content="采样 1. PDF &amp; CDF 概率密度函数(Probability Density Function, PDF)：描述连续随机变量在某个取值范围内的概率分布的函数 - 某个位置处出现的概率，通常用f(x)、p(x)或pdf表示 \[ \int f(x)\text{d}x&#x3D;1 \] 累积分布函数(Cumulative Distribution Function, CDF)：描述随机变量小于">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://shuaigougou5545.github.io/img/cover/sample.png">
 <meta property="article:published_time" content="2024-05-24T06:10:51.000Z">
-<meta property="article:modified_time" content="2024-05-24T06:29:31.409Z">
+<meta property="article:modified_time" content="2024-05-24T10:51:08.753Z">
 <meta property="article:author" content="CoolDoggo">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://shuaigougou5545.github.io/img/cover/sample.png">
@@ -266,7 +266,8 @@
             
               <div class="markdown-body">
                 
-                <h4 id="pdf-cdf">1.PDF &amp; CDF</h4>
+                <h1 id="采样">采样</h1>
+<h2 id="pdf-cdf">1. PDF &amp; CDF</h2>
 <p>概率密度函数(Probability Density Function,
 PDF)：描述连续随机变量在某个取值范围内的概率分布的函数 -
 某个位置处出现的概率，通常用f(x)、p(x)或pdf表示 <span
@@ -277,19 +278,18 @@ CDF)：描述随机变量小于等于某个值的概率的函数 -
 对PDF的累积，通常用F(x)或cdf表示 <span class="math display">\[
 F(x)=\int^x_{-\infty}f(t)\text{d}t=P(X \le x)
 \]</span></p>
-<h4 id="重要性采样">2.重要性采样</h4>
+<h2 id="重要性采样">2. 重要性采样</h2>
 <p>重要性采样的目标：通过选择更合适的采样分布来减少方差，从而提高蒙特卡洛估计的精度</p>
 <ul>
 <li><p>期望的等价转换</p>
 <p>当计算某个函数的期望时，假设变量x符合某个分布p(x)，但分布p(x)往往难以直接采样；我们可以选取另一个容易进行采样的分布q(x)：
 <span class="math display">\[
-\begin{array}{c}
 E_{x\sim p}[f(x)]=\int_x f(x)p(x)\text{d}x=\int_x
 f(x)\frac{p(x)}{q(x)}q(x)\text{d}x=E_{x\sim q}[f(x)\frac{p(x)}{q(x)}]
-\\ \therefore E_{x\sim p}[f(x)]=E_{x\sim q}[f(x)\frac{p(x)}{q(x)}]
-\end{array}
-\]</span>
-这一步骤说明在不同分布下采样，通过加权可以得到相同的期望，权值/重要性即为"p(x)/q(x)"</p></li>
+\]</span> <span class="math display">\[
+\therefore E_{x\sim p}[f(x)]=E_{x\sim q}[f(x)\frac{p(x)}{q(x)}]
+\]</span></p>
+<p>这一步骤说明在不同分布下采样，通过加权可以得到相同的期望，权值/重要性即为"p(x)/q(x)"</p></li>
 <li><p>蒙特卡洛估计</p>
 <p>通过从q(x)中采样N个点，期望值的蒙特卡洛估计为： <span
 class="math display">\[
@@ -302,12 +302,12 @@ class="math display">\[
 \]</span>
 为什么方差较小时，采样的估计值越接近真实的期望值？有两种理解方式：(1)当方差较小时，意味着估计值在不同的样本集上波动较小，因此更接近其期望值
 (2)利用切比雪夫不等式证明： <span class="math display">\[
-\begin{array}{c}
 \text{Pr}(|X-\mu|\ge k\sigma)\le \frac{1}{k^2}
-\\ \text{Pr}(|\hat{I}_{IS}-I|\ge k\sqrt{\frac{Var(h(x))}{N}})\le
+\]</span> <span class="math display">\[
+\text{Pr}(|\hat{I}_{IS}-I|\ge k\sqrt{\frac{Var(h(x))}{N}})\le
 \frac{1}{k^2}
-\end{array}
-\]</span> 当N增加，或者方差减少，估计值越接近于期望值</p></li>
+\]</span></p>
+<p>当N增加，或者方差减少，估计值越接近于期望值</p></li>
 <li><p>最小化方差</p>
 <p>我们知道常数(c)的方差为0，所以当q(x)与|f(x)p(x)|成正比关系时，方差最小
 <span class="math display">\[
@@ -315,7 +315,7 @@ q(x)\propto |f(x)p(x)| \ \ \ \rightarrow\ \ \ \min Var(c)
 \]</span></p></li>
 </ul>
 <p><strong>总结：重要性采样阐述了如何选择合适的采样方式，使得估计期望值更加准确</strong></p>
-<h4 id="蒙特卡洛积分">3.蒙特卡洛积分</h4>
+<h2 id="蒙特卡洛积分">3. 蒙特卡洛积分</h2>
 <ul>
 <li><p>求解定积分</p>
 <p>在实际应用中，我们往往需要求解函数的定积分(蒙特卡洛积分)： <span
@@ -325,39 +325,42 @@ class="math display">\[
 \]</span>
 此时，我们只需要选择合适的分布q(x)，使得q(x)与|f(x)|成正比</p></li>
 <li><p>通过期望证明 <span class="math display">\[
-\begin{array}{c}
 E(\frac{f(x)}{p(x)})=\int\frac{f(x)}{p(x)}p(x)\text{d}x=\int
 f(x)\text{d}x
-\\ \because E(\frac{f(x)}{p(x)})\approx \frac{1}{N} \sum_{i=1}^n
+\]</span></p>
+<p><span class="math display">\[
+\because E(\frac{f(x)}{p(x)})\approx \frac{1}{N} \sum_{i=1}^n
 \frac{f(x_i)}
-{p(x_i)} \\ \therefore \int f(x)\text{d}x\approx \frac{1}{N}
-\sum_{i=1}^n \frac{f(x_i)}
-{p(x_i)}\end{array}
-\]</span>
-在上述过程中，通过选择另一个容易进行采样的分布q(x)，假设了q(x)与|p(x)|存在正比关系，即可将q(x)等价替换上述过程中的p(x)</p></li>
+{p(x_i)}
+\]</span></p>
+<p><span class="math display">\[
+\therefore \int f(x)\text{d}x\approx \frac{1}{N} \sum_{i=1}^n
+\frac{f(x_i)}
+{p(x_i)}
+\]</span></p>
+<p>在上述过程中，通过选择另一个容易进行采样的分布q(x)，假设了q(x)与|p(x)|存在正比关系，即可将q(x)等价替换上述过程中的p(x)</p></li>
 <li><p>蒙特卡洛积分的理解</p>
 <p>在求解定积分时，不同区间段对积分值的贡献应是均等的。然而，由于概率分布(采样)的影响，选取的采样点往往集中在概率密度较大的区域，使得积分值偏向该区域。为了消除这种偏差，需要将f(x)除以p(x)，即调整每个采样点的权重{💡个人认为，这是一种快速理解和记忆蒙特卡洛积分的好方法}</p></li>
 </ul>
 <p><strong>综上：我们根据目标函数的分布选择相似的采样分布，以提高估计的精度</strong></p>
-<h4 id="逆变换采样">4.逆变换采样</h4>
+<h2 id="逆变换采样">4. 逆变换采样</h2>
 <p>逆变换采样：是一种<strong>为任意概率分布生成随机样本</strong>的技术 →
 将均匀分布的随机数u映射到目标分布f(x)上，其中映射函数为累积分布函数(cdf)的反函数F<sup>-1</sup>。也就是说，新构造的随机变量X可以表示为F<sup>-1</sup>(u)，认为这个新变量X的分布与目标分布一致</p>
 <ul>
 <li><p>证明过程：</p>
 <p>我们假设变量u在[0,1]上均匀线性随机分布，通过映射函数F<sup>-1</sup>得到新的变量X，即
 <span class="math display">\[
-\begin{array}{c}
 u\sim U(0,1)
-\\ X=F^{-1}(u)
-\\ \text{}\ F(x)=\int_{-\infty}^x f(t)\text{d}t
-\end{array}
-\]</span>
-我们需要验证新变量X与原始变量x具有相同的分布，这可以通过累积分布函数(CDF)进行推导，新变量X的累积分布函数为：
+\]</span></p>
+<p><span class="math display">\[
+X=F^{-1}(u)
+\]</span></p>
+<p><span class="math display">\[
+\text{}\ F(x)=\int_{-\infty}^x f(t)\text{d}t
+\]</span></p>
+<p>我们需要验证新变量X与原始变量x具有相同的分布，这可以通过累积分布函数(CDF)进行推导，新变量X的累积分布函数为：
 <span class="math display">\[
-\begin{array}{c}
-F_X(x)=P(X\le x)
-\\ = P(F^{-1}(u)\le x)
-\end{array}
+F_X(x)=P(X\le x) = P(F^{-1}(u)\le x)
 \]</span>
 利用累积分布函数F的单调递增特性(反函数F<sup>-1</sup>也必定单调递增)，因此：
 <span class="math display">\[
@@ -366,12 +369,11 @@ F_X(x)=P(X\le x)
 class="math display">\[
 \because P(u\le u)=u
 \]</span> 所以： <span class="math display">\[
-\begin{array}{c}
 =P(u\le F(x))=F(x)
-\\ \therefore F_X(x)=F(x)
-\end{array}
-\]</span>
-综上，证明了随机变量X=F<sup>-1</sup>(u)的累积分布函数F<sub>X</sub>(x)与目标累积分布函数F(x)一致。因此，利用逆变换采样生成的随机变量X确实服从目标概率分布f(x)</p></li>
+\]</span> <span class="math display">\[
+\therefore F_X(x)=F(x)
+\]</span></p>
+<p>综上，证明了随机变量X=F<sup>-1</sup>(u)的累积分布函数F<sub>X</sub>(x)与目标累积分布函数F(x)一致。因此，利用逆变换采样生成的随机变量X确实服从目标概率分布f(x)</p></li>
 <li><p>使用步骤：</p>
 <ol type="1">
 <li><p>已知概率密度函数(PDF) → p(x) 或者 f(x)</p></li>
@@ -384,7 +386,7 @@ F(x)=\int_{-\infty}^x f(t)\text{d}t
 </ol></li>
 </ul>
 <p><strong>综上所述：逆变换采样是一种非常通用的随机样本生成算法。在已知PDF或CDF的情况下，通过线性随机数和逆函数映射的方法，可以生成指定分布的随机样本。</strong></p>
-<h4 id="常见采样方式">5.常见采样方式</h4>
+<h2 id="常见采样方式">5. 常见采样方式</h2>
 <p>在图形学中，采样技术的应用主要集中在求解渲染方程过程中。渲染方程通过对着色点的入射半球进行采样。采样分布的选择往往依赖于积分的函数f(x)，而渲染方程中的f(x)包括光源项、BRDF项、余弦项等。根据不同情况，衍生出了如下常见的采样方式：</p>
 <ul>
 <li>半球均匀采样</li>
@@ -392,7 +394,7 @@ F(x)=\int_{-\infty}^x f(t)\text{d}t
 <li>GGX采样 → 基于GGX法线分布</li>
 <li>...</li>
 </ul>
-<h4 id="半球均匀采样">6.半球均匀采样</h4>
+<h2 id="半球均匀采样">6. 半球均匀采样</h2>
 <blockquote>
 <p>参考链接 -
 半球均匀采样：https://www.bogotobogo.com/Algorithms/uniform_distribution_sphere.php</p>
@@ -417,28 +419,37 @@ R], θ∈[0, 2𝜋]</p>
 均匀分布的核心是面积，我们可以从面积入手。既然假设了是均匀采样，那么PDF已知，为1
 / 总圆面面积 [接下来的步骤-逆变换采样]： <span class="math display">\[
 p(A)=\frac{1}{\text{圆面总面积}}=\frac{1}{\pi R^2}
-\\ \therefore\int_{circle} \frac{1}{\pi R^2} \text{d}A=1
-\]</span> 将dA转换到极坐标系drdθ： <span class="math display">\[
+\]</span> <span class="math display">\[
+\therefore\int_{circle} \frac{1}{\pi R^2} \text{d}A=1
+\]</span></p>
+<p>将dA转换到极坐标系drdθ： <span class="math display">\[
 \int_{circle} \frac{1}{\pi R^2} \text{d}A=1
-\\ \therefore\int_{circle} \frac{r}{\pi R^2} \text{d}r\text{d}\theta=1
-\\ \therefore p(r, \theta)=\frac{r}{\pi R^2}
-\]</span>
-得到联合概率密度p(r,θ)，因此可以计算边缘概率密度[联合概率密度→边缘概率密度
+\]</span> <span class="math display">\[
+\therefore\int_{circle} \frac{r}{\pi R^2} \text{d}r\text{d}\theta=1
+\]</span></p>
+<p><span class="math display">\[
+\therefore p(r, \theta)=\frac{r}{\pi R^2}
+\]</span></p>
+<p>得到联合概率密度p(r,θ)，因此可以计算边缘概率密度[联合概率密度→边缘概率密度
 - 在另一个变量上求积分] <span class="math display">\[
 p_r(r,\theta)=\int_0^{2\pi}\frac{r}{\pi
 R^2}\text{d}\theta=\frac{2r}{R^2}
-\\ p_\theta(r,\theta)=\int_0^{R}\frac{r}{\pi
-R^2}\text{d}r=\frac{1}{2\pi}
-\]</span> 求边缘累积分布CDF： <span class="math display">\[
+\]</span> <span class="math display">\[
+p_\theta(r,\theta)=\int_0^{R}\frac{r}{\pi R^2}\text{d}r=\frac{1}{2\pi}
+\]</span></p>
+<p>求边缘累积分布CDF： <span class="math display">\[
 F_r(r,\theta)=\int_0^r \frac{2r}{R^2}\text{d}r=\frac{r^2}{R^2}
-\\ F_\theta(r,\theta)= \int_0^\theta
+\]</span> <span class="math display">\[
+F_\theta(r,\theta)= \int_0^\theta
 \frac{1}{2\pi}\text{d}\theta=\frac{\theta}{2\pi}
-\]</span> 最后求反函数[求反函数的方法 - 交换x与y]： <span
+\]</span></p>
+<p>最后求反函数[求反函数的方法 - 交换x与y]： <span
 class="math display">\[
 F_r^{-1}(r,\theta)= R\sqrt{r}
-\\ F_\theta^{-1}(r,\theta)= 2\pi\theta
-\]</span>
-根据逆变换采样的原理，为r和θ分别生成随机数U(0,1)，再经过F<sup>-1</sup>映射到对应变量</p>
+\]</span> <span class="math display">\[
+F_\theta^{-1}(r,\theta)= 2\pi\theta
+\]</span></p>
+<p>根据逆变换采样的原理，为r和θ分别生成随机数U(0,1)，再经过F<sup>-1</sup>映射到对应变量</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">uniform_circle_sampling</span>(<span class="hljs-params">R, num_samples</span>):<br>    <span class="hljs-comment">#均匀圆面采样</span><br>    x_list = []<br>    y_list = []<br>    <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(num_samples):<br>        random_theta = random.random() * math.pi * <span class="hljs-number">2</span> <span class="hljs-comment"># 2𝜋θ</span><br>        random_r = math.sqrt(random.random()) * R <span class="hljs-comment"># R·sqrt&#123;r&#125;</span><br>        x = math.cos(random_theta) * random_r<br>        y = math.sin(random_theta) * random_r<br>        x_list.append(x)<br>        y_list.append(y)<br>    <span class="hljs-keyword">return</span> x_list, y_list<br></code></pre></td></tr></table></figure>
 <p>可视化采样点如图，可以发现采样点均匀分布在圆面上：</p>
 <p><img src="https://cdn.jsdelivr.net/gh/shuaigougou5545/blog-image/img/202405241411279.png" srcset="/img/loading.gif" lazyload alt="均匀球面采样" style="zoom:20%;" /></p></li>
@@ -458,51 +469,71 @@ class="math display">\[
 均匀分布的核心是面积，我们可以从面积入手，球面中与面积相关的概念是单位立体角[单位立体角的定义即面积微元除以半径的平方]。既然假设了是均匀采样，那么PDF已知，为1
 / 总立体角 [接下来的步骤-逆变换采样]： <span class="math display">\[
 p(\omega)=\frac{1}{\text{圆面总立体角}}=\frac{1}{4\pi}
-\\ \therefore\int_{sphere} \frac{1}{4\pi} \text{d}\omega=1
-\]</span> 将dω转换到单位俯仰角和方位角： <span class="math display">\[
+\]</span> <span class="math display">\[
+\therefore\int_{sphere} \frac{1}{4\pi} \text{d}\omega=1
+\]</span></p>
+<p>将dω转换到单位俯仰角和方位角： <span class="math display">\[
 \int_{sphere} \frac{1}{4\pi} \text{d}\omega=1
-\\ \therefore \int_{sphere} \frac{\sin\theta}{4\pi} \text{d}\theta
+\]</span> <span class="math display">\[
+\therefore \int_{sphere} \frac{\sin\theta}{4\pi} \text{d}\theta
 \text{d}\phi=1
-\\ \therefore p(\theta,\phi)=\frac{\sin\theta}{4\pi}
-\]</span> 根据联合概率密度，计算边缘概率密度： <span
-class="math display">\[
+\]</span></p>
+<p><span class="math display">\[
+\therefore p(\theta,\phi)=\frac{\sin\theta}{4\pi}
+\]</span></p>
+<p>根据联合概率密度，计算边缘概率密度： <span class="math display">\[
 p_\theta(\theta,\phi)=\int_0^{2\pi}\frac{\sin\theta}{4\pi}\text{d}\phi=\frac{\sin\theta}{2}
-\\
+\]</span> <span class="math display">\[
 p_\phi(\theta,\phi)=\int_0^{\pi}\frac{\sin\theta}{4\pi}\text{d}\theta=\frac{1}{2\pi}
-\]</span> 对边缘概率密度进行积分，得到边缘累积分布CDF： <span
+\]</span></p>
+<p>对边缘概率密度进行积分，得到边缘累积分布CDF： <span
 class="math display">\[
 F_\theta(\theta,\phi)=\int_0^\theta p_\theta(\theta,\phi)
 \text{d}\theta=\frac{1-\cos\theta}{2}
-\\ F_\phi(\theta,\phi)=\int_0^\phi p_\phi(\theta,\phi) \text{d}\phi
+\]</span> <span class="math display">\[
+F_\phi(\theta,\phi)=\int_0^\phi p_\phi(\theta,\phi) \text{d}\phi
 =\frac{\phi}{2\pi}
-\]</span> 计算反函数： <span class="math display">\[
+\]</span></p>
+<p>计算反函数： <span class="math display">\[
 F^{-1}_\theta(\theta,\phi)=\cos^{-1}(2\theta -1)=\arccos(2\theta-1)
-\\ F^{-1}_\phi(\theta,\phi)=2\pi \phi
-\]</span> 可视化如下：</p>
+\]</span> <span class="math display">\[
+F^{-1}_\phi(\theta,\phi)=2\pi \phi
+\]</span></p>
+<p>可视化如下：</p>
 <p><img src="https://cdn.jsdelivr.net/gh/shuaigougou5545/blog-image/img/202405241346383.png" srcset="/img/loading.gif" lazyload alt="均匀球面采样" style="zoom:20%;" /></p>
 <p>要想求均匀半球面，上述推导中PDF=1/(2𝜋)，且对应积分区域范围砍半即可，推导过程略，结果为：
 <span class="math display">\[
 \theta&#39;:F^{-1}_\theta(u)=\arccos(1-u)
-\\ \phi&#39;:F^{-1}_\phi(v)=2\pi v
+\]</span></p>
+<p><span class="math display">\[
+\phi&#39;:F^{-1}_\phi(v)=2\pi v
 \]</span></p></li>
 </ul>
-<h4 id="余弦加权的半球采样">7.余弦加权的半球采样</h4>
+<h2 id="余弦加权的半球采样">7. 余弦加权的半球采样</h2>
 <p>余弦加权的半球采样：一种特殊的球面采样方式，基于朗伯余弦定理，即渲染方程中的cosθ项。由于这种方法会使采样点集中在极点附近，因此它不属于均匀分布，需要单独讨论。</p>
 <ul>
 <li><p>推导：我们假设PDF与函数f(x)成正比关系，函数是cosθ，即PDF = c ·
 cosθ，其中c为常数，根据PDF的积分为1求得c： <span class="math display">\[
 \int_{hemisphere} c\cdot \cos\theta \ \text{d}\omega=1
-\\ \int^{2\pi}_{0}\int^{\pi/2}_0 c \sin\theta\cos\theta \ \text{d}\theta
+\]</span> <span class="math display">\[
+\int^{2\pi}_{0}\int^{\pi/2}_0 c \sin\theta\cos\theta \ \text{d}\theta
 \text{d}\phi=1
-\\ \therefore c = \frac{1}{\pi}
-\]</span> 概率密度： <span class="math display">\[
-\\ \therefore p(\omega)=\frac{\cos\theta}{\pi}
-\\ \therefore p(\theta,\phi)=\frac{\sin\theta \cos\theta}{\pi}
-\]</span> 利用逆变换采样，具体步骤略～，得到如下： <span
+\]</span></p>
+<p><span class="math display">\[
+\therefore c = \frac{1}{\pi}
+\]</span></p>
+<p>概率密度： <span class="math display">\[
+\therefore p(\omega)=\frac{\cos\theta}{\pi}
+\]</span> <span class="math display">\[
+\therefore p(\theta,\phi)=\frac{\sin\theta \cos\theta}{\pi}
+\]</span></p>
+<p>利用逆变换采样，具体步骤略～，得到如下： <span
 class="math display">\[
 F^{-1}_\theta(\theta,\phi)=\frac{\arccos(1-2\theta)}{2}
-\\ F^{-1}_\phi(\theta,\phi)=2\pi\phi
-\]</span> 代码如下：</p>
+\]</span> <span class="math display">\[
+F^{-1}_\phi(\theta,\phi)=2\pi\phi
+\]</span></p>
+<p>代码如下：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs cpp">std::random_device rd;<br><span class="hljs-function">std::mt19937 <span class="hljs-title">gen</span><span class="hljs-params">(rd())</span></span>;<br>std::uniform_real_distribution&lt;&gt; <span class="hljs-built_in">rng</span>(<span class="hljs-number">0.0</span>, <span class="hljs-number">1.0</span>);<br><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> t = <span class="hljs-number">0</span>; t &lt; sample_side; t++) &#123;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> p = <span class="hljs-number">0</span>; p &lt; sample_side; p++) &#123;<br>        <span class="hljs-type">double</span> samplex = (t + <span class="hljs-built_in">rng</span>(gen)) / sample_side;<br>        <span class="hljs-type">double</span> sampley = (p + <span class="hljs-built_in">rng</span>(gen)) / sample_side;<br>        <br>        <span class="hljs-type">double</span> theta = <span class="hljs-number">0.5f</span> * <span class="hljs-built_in">acos</span>(<span class="hljs-number">1</span> - <span class="hljs-number">2</span>*samplex); <br>        <span class="hljs-type">double</span> phi =  <span class="hljs-number">2</span> * M_PI * sampley; <br>        Vec3f wi = <span class="hljs-built_in">Vec3f</span>(<span class="hljs-built_in">sin</span>(theta) * <span class="hljs-built_in">cos</span>(phi), <span class="hljs-built_in">sin</span>(theta) * <span class="hljs-built_in">sin</span>(phi), <span class="hljs-built_in">cos</span>(theta));<br>        <span class="hljs-type">float</span> pdf = wi.z / PI; <span class="hljs-comment">// p(ω)</span><br>        <br>        samlpeList.directions.<span class="hljs-built_in">push_back</span>(wi);<br>        samlpeList.PDFs.<span class="hljs-built_in">push_back</span>(pdf);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p><img src="https://cdn.jsdelivr.net/gh/shuaigougou5545/blog-image/img/202405241411972.png" srcset="/img/loading.gif" lazyload alt="余弦加权的半球采样" style="zoom:20%;" /></p></li>
 <li><p>※算法的特殊之处：当转动图像，从上向下看，可以发现这些点的投影似乎是均匀的
@@ -511,11 +542,15 @@ F^{-1}_\theta(\theta,\phi)=\frac{\arccos(1-2\theta)}{2}
 <p>球面上采样点的θ选择，将θ投影到圆面上，得到对应的半径r： <span
 class="math display">\[
 F^{-1}_\theta(\theta,\phi)=\frac{\arccos(1-2\theta)}{2}
-\\r_{projection}=\sin(\frac{\arccos(1-2\theta)}{2})
-\\ \because F_r^{-1}(r,\theta)= \sqrt{r}
-\]</span> 会发现投影的半径，和均匀采样圆面时的半径，值是一致的</p></li>
+\]</span> <span class="math display">\[
+r_{projection}=\sin(\frac{\arccos(1-2\theta)}{2})
+\]</span></p>
+<p><span class="math display">\[
+\because F_r^{-1}(r,\theta)= \sqrt{r}
+\]</span></p>
+<p>会发现投影的半径，和均匀采样圆面时的半径，值是一致的</p></li>
 </ul>
-<h4 id="ggx采样">8.GGX采样</h4>
+<h2 id="ggx采样">8. GGX采样</h2>
 <p>GGX采样</p>
 <ul>
 <li><p>如何设计PDF？</p>
@@ -527,18 +562,23 @@ f_r(i,o,h)\cos\theta
 需要设计一个类似于这个的采样PDF，GGX采样进行如下设计，这里借助了NDF的性质：
 <span class="math display">\[
 pdf_m(\textbf{m})=D(\textbf{m})(\textbf{m}\cdot \textbf{n})
-\\ \because \int D(\textbf{m})(\textbf{m}\cdot
+\]</span> <span class="math display">\[
+\because \int D(\textbf{m})(\textbf{m}\cdot
 \textbf{n})\text{d}\omega_h=1
-\]</span>
-其中NDF项使用GGX法线分布：{式子中的m即为半程向量，即微表面的法线朝向}
+\]</span></p>
+<p>其中NDF项使用GGX法线分布：{式子中的m即为半程向量，即微表面的法线朝向}
 <span class="math display">\[
 D_{ggx}(m)=\frac{\alpha^2}{\pi ((m\cdot n)^2 (\alpha^2-1) + 1)^2}
 \]</span> GGX法线分布中往往假设法线n为(0,0,1)，半程向量m用θ/𝜑表示：
 <span class="math display">\[
 \textbf{n}=(0,0,1)
-\\ \textbf{m}=(\sin\theta\cos\phi, \sin\theta\sin\phi,\cos\theta)
-\\ \therefore(\textbf{m}\cdot \textbf{n})=\cos\theta
-\]</span> 找到了PDF，即可通过逆采样法来构造对应采样点</p></li>
+\]</span> <span class="math display">\[
+\textbf{m}=(\sin\theta\cos\phi, \sin\theta\sin\phi,\cos\theta)
+\]</span></p>
+<p><span class="math display">\[
+\therefore(\textbf{m}\cdot \textbf{n})=\cos\theta
+\]</span></p>
+<p>找到了PDF，即可通过逆采样法来构造对应采样点</p></li>
 <li><p>[题外话]NDF的理解</p>
 <blockquote>
 <p>NDF的相关理解：https://www.reedbeta.com/blog/hows-the-ndf-really-defined/</p>
@@ -546,19 +586,21 @@ D_{ggx}(m)=\frac{\alpha^2}{\pi ((m\cdot n)^2 (\alpha^2-1) + 1)^2}
 <p>NDF(D项)并不是在半球上积分为1，而需额外增加一个cos项，即m点乘n，是因为：
 <span class="math display">\[
 \text{d}A_h=D(h)\text{d}\omega_h \cdot A
-\\ \frac{1}{A}\int (n\cdot h)\text{d}A_h=\int D(h)(n\cdot
-h)\text{d}\omega
-\]</span>
-微观面积dA<sub>h</sub>通过投影(n·h)被投影到宏观表面A之上，所以D(h)不单单是关于单位立体角的概率分布，而且还关于面积</p></li>
+\]</span> <span class="math display">\[
+\frac{1}{A}\int (n\cdot h)\text{d}A_h=\int D(h)(n\cdot h)\text{d}\omega
+\]</span></p>
+<p>微观面积dA<sub>h</sub>通过投影(n·h)被投影到宏观表面A之上，所以D(h)不单单是关于单位立体角的概率分布，而且还关于面积</p></li>
 <li><p>设计采样点[逆变换采样法]</p>
 <p>为了从已知PDF<sub>m</sub>(m)构造随机采样方向m，通常将立体角转换成球面坐标系θ和𝜑来处理，即PDF<sub>m</sub>(θ,𝜑)</p>
 <p>在这个过程中，需要一个雅可比行列式(Jacobian)，因为PDF<sub>m</sub>(m)的单位是逆立体角(sr<sup>-1</sup>)，以保证转换是正确的
 <span class="math display">\[
 pdf_m(\theta,\phi)=pdf_m(m) \cdot
 \frac{\text{d}m}{\text{d}\theta\  \text{d}\phi}
-\\=\frac{\alpha^2\cos\theta}{\pi (\cos^2\theta(\alpha^2-1) + 1)^2}
+\]</span> <span class="math display">\[
+=\frac{\alpha^2\cos\theta}{\pi (\cos^2\theta(\alpha^2-1) + 1)^2}
 \sin\theta
-\]</span> 很明显PDF与𝜑无关，可以认为𝜑可以在[0,2𝜋]上均匀生成： <span
+\]</span></p>
+<p>很明显PDF与𝜑无关，可以认为𝜑可以在[0,2𝜋]上均匀生成： <span
 class="math display">\[
 \phi=2\pi\xi_2
 \]</span>
@@ -569,7 +611,9 @@ CDF(\theta)=\int_0^\theta pdf_m(\theta&#39;,\phi)\text{d}\theta&#39;
 <p><img src="https://cdn.jsdelivr.net/gh/shuaigougou5545/blog-image/img/202405241411248.png" srcset="/img/loading.gif" lazyload alt="截屏2024-05-22 13.18.14" style="zoom:50%;" /></p>
 <p>因此得到采样点： <span class="math display">\[
 \theta=\arctan (\sqrt{\frac{\xi_1}{1-\xi_1}})
-\\ \phi = 2\pi \xi_2
+\]</span></p>
+<p><span class="math display">\[
+\phi = 2\pi \xi_2
 \]</span></p></li>
 <li><p>蒙特卡洛积分：</p>
 <p>在上述已经推导出PDF<sub>m</sub>，接着需要计算蒙特卡洛积分中的每一项：
@@ -586,11 +630,11 @@ pdf_i(i)=pdf_m(m)\cdot ||\frac{\partial\omega_m}{\partial\omega_i}||
 对上述i/m/o之间的关系左右两边同时微分进行推导[涉及微分运算法则]： <span
 class="math display">\[
 \text{d}\textbf{i}=4(\textbf{i}\cdot \textbf{m})\text{d}\textbf{m}
-\\
+\]</span> <span class="math display">\[
 ||\frac{\partial\omega_m}{\partial\omega_i}||=\frac{1}{4(\textbf{i}\cdot
 \textbf{m})}
-\]</span>
-最终的权重为：这里的权重是指蒙特卡洛积分的每一项，即f(xi)/p(xi) <span
+\]</span></p>
+<p>最终的权重为：这里的权重是指蒙特卡洛积分的每一项，即f(xi)/p(xi) <span
 class="math display">\[
 weight(\mathbf{i}) = \frac{F(\mathbf{i}, \mathbf{o}, \mathbf{h})
 G(\mathbf{i}, \mathbf{o}, \mathbf{h}) (\mathbf{m} \cdot
