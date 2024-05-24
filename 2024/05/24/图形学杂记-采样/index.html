@@ -16,31 +16,23 @@
   <meta name="author" content="CoolDoggo">
   <meta name="keywords" content="">
   
-    <meta name="description" content="（1）PDF &amp; CDF 概率密度函数(Probability Density Function, PDF)：描述连续随机变量在某个取值范围内的概率分布的函数 - 某个位置处出现的概率，通常用f(x)、p(x)或pdf表示 \[ \int f(x)\text{d}x&#x3D;1 \] 累积分布函数(Cumulative Distribution Function, CDF)：描述随机变量小于等于某">
+    <meta name="description" content="1.PDF &amp; CDF 概率密度函数(Probability Density Function, PDF)：描述连续随机变量在某个取值范围内的概率分布的函数 - 某个位置处出现的概率，通常用f(x)、p(x)或pdf表示 \[ \int f(x)\text{d}x&#x3D;1 \] 累积分布函数(Cumulative Distribution Function, CDF)：描述随机变量小于等于某个">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[图形学]采样">
-<meta property="og:url" content="https://shuaigougou5545.github.io/2024/05/24/%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E9%87%87%E6%A0%B7/index.html">
+<meta property="og:title" content="[图形学杂记] 采样">
+<meta property="og:url" content="https://shuaigougou5545.github.io/2024/05/24/%E5%9B%BE%E5%BD%A2%E5%AD%A6%E6%9D%82%E8%AE%B0-%E9%87%87%E6%A0%B7/index.html">
 <meta property="og:site_name" content="CoolDoggo&#39;s Blog">
-<meta property="og:description" content="（1）PDF &amp; CDF 概率密度函数(Probability Density Function, PDF)：描述连续随机变量在某个取值范围内的概率分布的函数 - 某个位置处出现的概率，通常用f(x)、p(x)或pdf表示 \[ \int f(x)\text{d}x&#x3D;1 \] 累积分布函数(Cumulative Distribution Function, CDF)：描述随机变量小于等于某">
+<meta property="og:description" content="1.PDF &amp; CDF 概率密度函数(Probability Density Function, PDF)：描述连续随机变量在某个取值范围内的概率分布的函数 - 某个位置处出现的概率，通常用f(x)、p(x)或pdf表示 \[ \int f(x)\text{d}x&#x3D;1 \] 累积分布函数(Cumulative Distribution Function, CDF)：描述随机变量小于等于某个">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/shuaigougou5545/blog-image/img/202405241354410.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/shuaigougou5545/blog-image/img/202405241346311.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/shuaigougou5545/blog-image/img/202405241346770.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/shuaigougou5545/blog-image/img/202405241346383.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/shuaigougou5545/blog-image/img/202405241354769.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/shuaigougou5545/blog-image/img/202405241354993.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/shuaigougou5545/blog-image/img/202405241354806.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/shuaigougou5545/blog-image/img/202405241346093.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/shuaigougou5545/blog-image/img/202405241354268.png">
-<meta property="article:published_time" content="2024-05-24T05:53:52.000Z">
-<meta property="article:modified_time" content="2024-05-24T05:55:21.449Z">
+<meta property="og:image" content="https://shuaigougou5545.github.io/img/cover/sample.png">
+<meta property="article:published_time" content="2024-05-24T06:10:51.000Z">
+<meta property="article:modified_time" content="2024-05-24T06:29:31.409Z">
 <meta property="article:author" content="CoolDoggo">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/shuaigougou5545/blog-image/img/202405241354410.png">
+<meta name="twitter:image" content="https://shuaigougou5545.github.io/img/cover/sample.png">
   
   
   
-  <title>[图形学]采样 - CoolDoggo&#39;s Blog</title>
+  <title>[图形学杂记] 采样 - CoolDoggo&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -206,7 +198,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="[图形学]采样"></span>
+            <span id="subtitle" data-typed-text="[图形学杂记] 采样"></span>
           
         </div>
 
@@ -217,8 +209,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-05-24 13:53" pubdate>
-          2024年5月24日 下午
+        <time datetime="2024-05-24 14:10" pubdate>
+          星期五, 五月 24日 2024, 2:10 下午
         </time>
       </span>
     
@@ -229,20 +221,12 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
+          <!-- compatible with older versions-->
           5.2k 字
         
       </span>
     
 
-    
-      <span class="post-meta mr-2">
-        <i class="iconfont icon-clock-fill"></i>
-        
-        
-        
-          44 分钟
-        
-      </span>
     
 
     
@@ -277,12 +261,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">[图形学]采样</h1>
+            <h1 id="seo-header">[图形学杂记] 采样</h1>
             
             
               <div class="markdown-body">
                 
-                <h4 id="pdf-cdf">（1）PDF &amp; CDF</h4>
+                <h4 id="pdf-cdf">1.PDF &amp; CDF</h4>
 <p>概率密度函数(Probability Density Function,
 PDF)：描述连续随机变量在某个取值范围内的概率分布的函数 -
 某个位置处出现的概率，通常用f(x)、p(x)或pdf表示 <span
@@ -293,7 +277,7 @@ CDF)：描述随机变量小于等于某个值的概率的函数 -
 对PDF的累积，通常用F(x)或cdf表示 <span class="math display">\[
 F(x)=\int^x_{-\infty}f(t)\text{d}t=P(X \le x)
 \]</span></p>
-<h4 id="重要性采样">（2）重要性采样</h4>
+<h4 id="重要性采样">2.重要性采样</h4>
 <p>重要性采样的目标：通过选择更合适的采样分布来减少方差，从而提高蒙特卡洛估计的精度</p>
 <ul>
 <li><p>期望的等价转换</p>
@@ -331,7 +315,7 @@ q(x)\propto |f(x)p(x)| \ \ \ \rightarrow\ \ \ \min Var(c)
 \]</span></p></li>
 </ul>
 <p><strong>总结：重要性采样阐述了如何选择合适的采样方式，使得估计期望值更加准确</strong></p>
-<h4 id="蒙特卡洛积分">（3）蒙特卡洛积分</h4>
+<h4 id="蒙特卡洛积分">3.蒙特卡洛积分</h4>
 <ul>
 <li><p>求解定积分</p>
 <p>在实际应用中，我们往往需要求解函数的定积分(蒙特卡洛积分)： <span
@@ -355,7 +339,7 @@ f(x)\text{d}x
 <p>在求解定积分时，不同区间段对积分值的贡献应是均等的。然而，由于概率分布(采样)的影响，选取的采样点往往集中在概率密度较大的区域，使得积分值偏向该区域。为了消除这种偏差，需要将f(x)除以p(x)，即调整每个采样点的权重{💡个人认为，这是一种快速理解和记忆蒙特卡洛积分的好方法}</p></li>
 </ul>
 <p><strong>综上：我们根据目标函数的分布选择相似的采样分布，以提高估计的精度</strong></p>
-<h4 id="逆变换采样">（4）逆变换采样</h4>
+<h4 id="逆变换采样">4.逆变换采样</h4>
 <p>逆变换采样：是一种<strong>为任意概率分布生成随机样本</strong>的技术 →
 将均匀分布的随机数u映射到目标分布f(x)上，其中映射函数为累积分布函数(cdf)的反函数F<sup>-1</sup>。也就是说，新构造的随机变量X可以表示为F<sup>-1</sup>(u)，认为这个新变量X的分布与目标分布一致</p>
 <ul>
@@ -400,7 +384,7 @@ F(x)=\int_{-\infty}^x f(t)\text{d}t
 </ol></li>
 </ul>
 <p><strong>综上所述：逆变换采样是一种非常通用的随机样本生成算法。在已知PDF或CDF的情况下，通过线性随机数和逆函数映射的方法，可以生成指定分布的随机样本。</strong></p>
-<h4 id="常见采样方式">（5）常见采样方式</h4>
+<h4 id="常见采样方式">5.常见采样方式</h4>
 <p>在图形学中，采样技术的应用主要集中在求解渲染方程过程中。渲染方程通过对着色点的入射半球进行采样。采样分布的选择往往依赖于积分的函数f(x)，而渲染方程中的f(x)包括光源项、BRDF项、余弦项等。根据不同情况，衍生出了如下常见的采样方式：</p>
 <ul>
 <li>半球均匀采样</li>
@@ -408,7 +392,7 @@ F(x)=\int_{-\infty}^x f(t)\text{d}t
 <li>GGX采样 → 基于GGX法线分布</li>
 <li>...</li>
 </ul>
-<h4 id="半球均匀采样">（6）半球均匀采样</h4>
+<h4 id="半球均匀采样">6.半球均匀采样</h4>
 <blockquote>
 <p>参考链接 -
 半球均匀采样：https://www.bogotobogo.com/Algorithms/uniform_distribution_sphere.php</p>
@@ -457,7 +441,7 @@ F_r^{-1}(r,\theta)= R\sqrt{r}
 根据逆变换采样的原理，为r和θ分别生成随机数U(0,1)，再经过F<sup>-1</sup>映射到对应变量</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">uniform_circle_sampling</span>(<span class="hljs-params">R, num_samples</span>):<br>    <span class="hljs-comment">#均匀圆面采样</span><br>    x_list = []<br>    y_list = []<br>    <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(num_samples):<br>        random_theta = random.random() * math.pi * <span class="hljs-number">2</span> <span class="hljs-comment"># 2𝜋θ</span><br>        random_r = math.sqrt(random.random()) * R <span class="hljs-comment"># R·sqrt&#123;r&#125;</span><br>        x = math.cos(random_theta) * random_r<br>        y = math.sin(random_theta) * random_r<br>        x_list.append(x)<br>        y_list.append(y)<br>    <span class="hljs-keyword">return</span> x_list, y_list<br></code></pre></td></tr></table></figure>
 <p>可视化采样点如图，可以发现采样点均匀分布在圆面上：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/shuaigougou5545/blog-image/img/202405241346311.png" srcset="/img/loading.gif" lazyload alt="均匀球面采样" style="zoom:20%;" /></p></li>
+<p><img src="https://cdn.jsdelivr.net/gh/shuaigougou5545/blog-image/img/202405241411279.png" srcset="/img/loading.gif" lazyload alt="均匀球面采样" style="zoom:20%;" /></p></li>
 </ul>
 <p><strong>3D球面采样</strong></p>
 <ul>
@@ -465,7 +449,7 @@ F_r^{-1}(r,\theta)= R\sqrt{r}
 𝜋], 𝜑∈[0, 2𝜋]</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">simple_sphere_sampling</span>(<span class="hljs-params">R, num_samples</span>):<br>    <span class="hljs-comment"># 简单球面采样</span><br>    x_list = []<br>    y_list = []<br>    z_list = []<br>    <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(num_samples):<br>        random_theta = random.random() * math.pi <span class="hljs-comment"># U(0,1) -&gt; [0,𝜋]</span><br>        random_phi = random.random() * math.pi * <span class="hljs-number">2</span> <span class="hljs-comment"># U(0,1) -&gt; [0,2𝜋]</span><br>        x = math.sin(random_theta) * math.cos(random_phi) * R<br>        y = math.sin(random_theta) * math.sin(random_phi) * R<br>        z = math.cos(random_theta) * R<br>        x_list.append(x)<br>        y_list.append(y)<br>        z_list.append(z)<br>    <span class="hljs-keyword">return</span> x_list, y_list, z_list<br></code></pre></td></tr></table></figure>
 <p>可视化采样点如图，可以发现采样点集中在极点区域：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/shuaigougou5545/blog-image/img/202405241346770.png" srcset="/img/loading.gif" lazyload alt="简单球面采样" style="zoom:20%;" /></p>
+<p><img src="https://cdn.jsdelivr.net/gh/shuaigougou5545/blog-image/img/202405241411614.png" srcset="/img/loading.gif" lazyload alt="简单球面采样" style="zoom:20%;" /></p>
 <p>不均匀的原因很清楚，通过单位立体角分析： <span
 class="math display">\[
 \text{d}\omega=\sin\theta\ \text{d}\theta\ \text{d}\phi
@@ -502,7 +486,7 @@ F^{-1}_\theta(\theta,\phi)=\cos^{-1}(2\theta -1)=\arccos(2\theta-1)
 \\ \phi&#39;:F^{-1}_\phi(v)=2\pi v
 \]</span></p></li>
 </ul>
-<h4 id="余弦加权的半球采样">（7）余弦加权的半球采样</h4>
+<h4 id="余弦加权的半球采样">7.余弦加权的半球采样</h4>
 <p>余弦加权的半球采样：一种特殊的球面采样方式，基于朗伯余弦定理，即渲染方程中的cosθ项。由于这种方法会使采样点集中在极点附近，因此它不属于均匀分布，需要单独讨论。</p>
 <ul>
 <li><p>推导：我们假设PDF与函数f(x)成正比关系，函数是cosθ，即PDF = c ·
@@ -520,7 +504,7 @@ F^{-1}_\theta(\theta,\phi)=\frac{\arccos(1-2\theta)}{2}
 \\ F^{-1}_\phi(\theta,\phi)=2\pi\phi
 \]</span> 代码如下：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs cpp">std::random_device rd;<br><span class="hljs-function">std::mt19937 <span class="hljs-title">gen</span><span class="hljs-params">(rd())</span></span>;<br>std::uniform_real_distribution&lt;&gt; <span class="hljs-built_in">rng</span>(<span class="hljs-number">0.0</span>, <span class="hljs-number">1.0</span>);<br><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> t = <span class="hljs-number">0</span>; t &lt; sample_side; t++) &#123;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> p = <span class="hljs-number">0</span>; p &lt; sample_side; p++) &#123;<br>        <span class="hljs-type">double</span> samplex = (t + <span class="hljs-built_in">rng</span>(gen)) / sample_side;<br>        <span class="hljs-type">double</span> sampley = (p + <span class="hljs-built_in">rng</span>(gen)) / sample_side;<br>        <br>        <span class="hljs-type">double</span> theta = <span class="hljs-number">0.5f</span> * <span class="hljs-built_in">acos</span>(<span class="hljs-number">1</span> - <span class="hljs-number">2</span>*samplex); <br>        <span class="hljs-type">double</span> phi =  <span class="hljs-number">2</span> * M_PI * sampley; <br>        Vec3f wi = <span class="hljs-built_in">Vec3f</span>(<span class="hljs-built_in">sin</span>(theta) * <span class="hljs-built_in">cos</span>(phi), <span class="hljs-built_in">sin</span>(theta) * <span class="hljs-built_in">sin</span>(phi), <span class="hljs-built_in">cos</span>(theta));<br>        <span class="hljs-type">float</span> pdf = wi.z / PI; <span class="hljs-comment">// p(ω)</span><br>        <br>        samlpeList.directions.<span class="hljs-built_in">push_back</span>(wi);<br>        samlpeList.PDFs.<span class="hljs-built_in">push_back</span>(pdf);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-<p><img src="https://cdn.jsdelivr.net/gh/shuaigougou5545/blog-image/img/202405241354769.png" srcset="/img/loading.gif" lazyload alt="余弦加权的半球采样" style="zoom:20%;" /></p></li>
+<p><img src="https://cdn.jsdelivr.net/gh/shuaigougou5545/blog-image/img/202405241411972.png" srcset="/img/loading.gif" lazyload alt="余弦加权的半球采样" style="zoom:20%;" /></p></li>
 <li><p>※算法的特殊之处：当转动图像，从上向下看，可以发现这些点的投影似乎是均匀的
 → 将点从球面投影到圆面上，在圆面上均匀分布 →
 我们是否可以先生成均匀的圆面采样，再投影到球面之上呢？</p>
@@ -531,7 +515,7 @@ F^{-1}_\theta(\theta,\phi)=\frac{\arccos(1-2\theta)}{2}
 \\ \because F_r^{-1}(r,\theta)= \sqrt{r}
 \]</span> 会发现投影的半径，和均匀采样圆面时的半径，值是一致的</p></li>
 </ul>
-<h4 id="ggx采样">（8）GGX采样</h4>
+<h4 id="ggx采样">8.GGX采样</h4>
 <p>GGX采样</p>
 <ul>
 <li><p>如何设计PDF？</p>
@@ -582,7 +566,7 @@ class="math display">\[
 class="math display">\[
 CDF(\theta)=\int_0^\theta pdf_m(\theta&#39;,\phi)\text{d}\theta&#39;
 \]</span> 令x=tanθ能简化积分的推导：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/shuaigougou5545/blog-image/img/202405241354993.png" srcset="/img/loading.gif" lazyload alt="截屏2024-05-22 13.18.14" style="zoom:50%;" /></p>
+<p><img src="https://cdn.jsdelivr.net/gh/shuaigougou5545/blog-image/img/202405241411248.png" srcset="/img/loading.gif" lazyload alt="截屏2024-05-22 13.18.14" style="zoom:50%;" /></p>
 <p>因此得到采样点： <span class="math display">\[
 \theta=\arctan (\sqrt{\frac{\xi_1}{1-\xi_1}})
 \\ \phi = 2\pi \xi_2
@@ -620,7 +604,7 @@ Conty单独考虑菲涅尔项F，即计算上述权重时认为F=1</p></li>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cpp">glm::vec3 up = std::<span class="hljs-built_in">abs</span>(N.z) &lt; <span class="hljs-number">0.999</span> ? glm::<span class="hljs-built_in">vec3</span>(<span class="hljs-number">0.0f</span>, <span class="hljs-number">0.0f</span>, <span class="hljs-number">1.0f</span>) : glm::<span class="hljs-built_in">vec3</span>(<span class="hljs-number">1.0f</span>, <span class="hljs-number">0.0f</span>, <span class="hljs-number">0.0f</span>); <span class="hljs-comment">// std::abs(N.z) &lt; 0.999: 此判断防止up与N平行</span><br>glm::vec3 T = glm::<span class="hljs-built_in">normalize</span>(glm::<span class="hljs-built_in">cross</span>(up, N));<br>glm::vec3 B = glm::<span class="hljs-built_in">cross</span>(N, T); <br><br><span class="hljs-keyword">return</span> glm::<span class="hljs-built_in">normalize</span>(T * H.x + B * H.y + N * H.z); <br></code></pre></td></tr></table></figure>
 <p>一种常见的定义TBN矩阵的方式，构造up向量时防止N与up(往往是z轴)平行，这是为了避免叉乘计算T时结果接近0而不稳定</p></li>
 </ul>
-<h4 id="低差异序列">（9）低差异序列</h4>
+<h4 id="低差异序列">9.低差异序列</h4>
 <p>低差异序列(low discrepancy
 sequences)：用于解决随机采样时采样点分布较为杂乱的问题。如下图，右侧的随机样本更为均匀，我们认为质量更高</p>
 <p><img src="https://cdn.jsdelivr.net/gh/shuaigougou5545/blog-image/img/202405241354806.png" srcset="/img/loading.gif" lazyload alt="截屏2024-05-21 17.57.17" style="zoom:33%;" /></p>
@@ -632,7 +616,7 @@ sequences)：用于解决随机采样时采样点分布较为杂乱的问题。�
 <li>Sobol序列</li>
 <li>Stratified序列</li>
 </ul>
-<p><img src="https://cdn.jsdelivr.net/gh/shuaigougou5545/blog-image/img/202405241346093.png" srcset="/img/loading.gif" lazyload alt="截屏2024-05-21 18.02.40" style="zoom:35%;" /></p>
+<p><img src="https://cdn.jsdelivr.net/gh/shuaigougou5545/blog-image/img/202405241411842.png" srcset="/img/loading.gif" lazyload alt="截屏2024-05-21 18.02.40" style="zoom:35%;" /></p>
 <p><strong>Harmmersley序列</strong></p>
 <ul>
 <li><p>生成方法</p>
@@ -652,10 +636,12 @@ Corput序列</p></li>
 </ul>
 <p><strong>综上：低差异序列能对给定的整数索引生成均匀分布的小数，可以代替传统的伪随机数用于均匀采样</strong></p>
 <hr />
-<p>总结：<u>蒙特卡洛积分</u>告诉我们可以通过采样和概率密度函数 (PDF)
+<h5
+id="总结蒙特卡洛积分告诉我们可以通过采样和概率密度函数-pdf-来计算定积分重要性采样告诉我们如何选择最优的采样方式pdf逆变换采样告诉我们如何在已知-pdf-的前提下生成采样点-这一套组合拳就能推理图形学中大部分的采样方式"><font color='red'>总结：<u>蒙特卡洛积分</u>告诉我们可以通过采样和概率密度函数
+(PDF)
 来计算定积分；<u>重要性采样</u>告诉我们如何选择最优的采样方式/PDF；<u>逆变换采样</u>告诉我们如何在已知
 PDF 的前提下生成采样点 →
-这一套组合拳就能推理图形学中大部分的采样方式</p>
+这一套组合拳就能推理图形学中大部分的采样方式</font></h5>
 
                 
               </div>
@@ -673,8 +659,8 @@ PDF 的前提下生成采样点 →
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>[图形学]采样</div>
-      <div>https://shuaigougou5545.github.io/2024/05/24/图形学-采样/</div>
+      <div>[图形学杂记] 采样</div>
+      <div>https://shuaigougou5545.github.io/2024/05/24/图形学杂记-采样/</div>
     </div>
     <div class="license-meta">
       
