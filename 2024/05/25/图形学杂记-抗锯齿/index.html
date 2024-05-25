@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cool-doggo.com/img/wallpaper/wallhaven-jxjr85.jpg">
 <meta property="article:published_time" content="2024-05-25T04:43:12.000Z">
-<meta property="article:modified_time" content="2024-05-25T11:16:34.836Z">
+<meta property="article:modified_time" content="2024-05-25T16:25:43.411Z">
 <meta property="article:author" content="CoolDoggo">
 <meta property="article:tag" content="图形学理论">
 <meta property="article:tag" content="抗锯齿">
@@ -216,7 +216,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          3 字
+          782 字
         
       </span>
     
@@ -261,6 +261,59 @@
               <div class="markdown-body">
                 
                 <h1 id="抗锯齿">抗锯齿</h1>
+<p>TODO：</p>
+<ul>
+<li>方案：SSAA、MSAA、TAA、FXAA、SMAA、DLAA</li>
+<li>锯齿分类：着色锯齿、纹理锯齿、几何锯齿</li>
+</ul>
+<h2 id="traditional-aa">1. Traditional AA</h2>
+<p>传统的抗锯齿方案包括：</p>
+<ul>
+<li>SSAA (Super Sampling AA) 超采样抗锯齿</li>
+<li>MSAA (Multi-Sampling AA) 多重采样抗锯齿</li>
+</ul>
+<p>这些技术都是通过<u>在渲染过程中提高分辨率</u>来减少图像中的锯齿效应，最后再<u>降采样</u>到显示分辨率，以获得更平滑的图像效果。</p>
+<p>这里需要注意，"分辨率"，即包括color buffer &amp; depth
+buffer，一般一个像素会对应多个缓冲区的样本。因为依赖于缓冲区等操作，传统抗锯齿由硬件主导实现</p>
+<h4 id="assaa">（a）SSAA</h4>
+<p>SSAA原理：通过以更高分辨率渲染整个帧，然后通过缩小到目标分辨率来实现抗锯齿效果，其中需要对每个像素进行<u>2倍或4倍的颜色和深度采样</u>，而不是仅一次采样，最终像素颜色是通过对采样值取平均来确定的</p>
+<p>缺点：包括渲染高分辨率RT时的着色压力与内存压力，以及在降采样过程中的计算开销等</p>
+<h4 id="bmsaa">（b）MSAA</h4>
+<p>MSAA原理：类似于SSAA，但它只集中处理几何边缘，而不是整个帧，仅对每个像素的深度缓冲区进行n倍采样。在边缘区域，MSAA通过多个采样点的覆盖情况，来确定最终像素颜色</p>
+<p>MSAA分为三个步骤：</p>
+<ol type="1">
+<li>Coverage
+Test：在光珊化阶段，判断三角形框住了几个当前像素的子样本</li>
+<li>Occlusion
+Test：即深度测试，每个子样本在光珊化阶段得到了插值后的深度值，然后做后续的深度测试
+- 假设子样本没通过深度测试，即认为贡献值为原缓冲颜色</li>
+<li>Resolve：Multi
+Sample的RT转换到原始分辨率的RT，默认的办法是均值法</li>
+</ol>
+<p>缺点：</p>
+<ul>
+<li><font color='green'><strong>不能用于延迟渲染管线</strong></font>
+<ul>
+<li>原因：延迟渲染管线分为两个阶段，G-Buffer阶段和Lighting
+Pass阶段。(1)首先G-Buffer阶段输出的信息是场景中的物理信息(法线、深度、颜色)等，对这些信息进行插值没有实际意义。(2)其次Lighting
+Pass阶段通过渲染quad实现，几何信息已经丢失。{但不代表完全不能做}</li>
+</ul></li>
+</ul>
+<h4 id="c区别">（c）区别</h4>
+<p>SSAA与MSAA的主要区别在于：<strong>SSAA - per sampler shading，MSAA -
+per pixel
+shading</strong>，即区别主要在于光珊化之后的像素着色阶段。SSAA需要对多个样本依次进行着色计算，成本高昂，而MSAA仅针对每个像素做一次着色计算，通过覆盖比率与深度测试通过比例来确定最终像素颜色。</p>
+<h2 id="the-newer-shader-based-aa">2. the newer shader-based AA</h2>
+<p>新型的基于shader的抗锯齿方案包括：</p>
+<ul>
+<li>FXAA (Fast Approximate AA) 快速近似抗锯齿</li>
+<li>SMAA (Subpixel Morphological AA)</li>
+<li>TAA (Temporal AA) 时间抗锯齿</li>
+</ul>
+<hr />
+<div class="note note-success">
+            <p>Reference：</p><p>[1] THE MEANING OF ANTI-ALIASING: FXAA, SMAA, MSAA, SSAA, TXAAALGORITHMS：<a target="_blank" rel="noopener" href="https://vr.arvilab.com/blog/anti-aliasing"class="uri">https://vr.arvilab.com/blog/anti-aliasing</a></p><p>[2] 移动端高性能图形开发 - 详解MSAA：<ahref="https://zhuanlan.zhihu.com/p/382063141"class="uri">https://zhuanlan.zhihu.com/p/382063141</a></p><p>[3] 游戏引擎随笔 0x15：现代图形 API 的 MSAA：<ahref="https://zhuanlan.zhihu.com/p/263101710"class="uri">https://zhuanlan.zhihu.com/p/263101710</a></p><p>[4] 延迟渲染与MSAA的那些事：<ahref="https://zhuanlan.zhihu.com/p/135444145"class="uri">https://zhuanlan.zhihu.com/p/135444145</a></p>
+          </div>
 
                 
               </div>

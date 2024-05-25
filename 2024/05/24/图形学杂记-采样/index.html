@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cool-doggo.com/img/wallpaper/wallhaven-zy3l5o.jpg">
 <meta property="article:published_time" content="2024-05-24T06:10:51.000Z">
-<meta property="article:modified_time" content="2024-05-25T04:41:06.583Z">
+<meta property="article:modified_time" content="2024-05-25T14:20:06.087Z">
 <meta property="article:author" content="CoolDoggo">
 <meta property="article:tag" content="图形学理论">
 <meta property="article:tag" content="采样">
@@ -389,15 +389,9 @@ F(x)=\int_{-\infty}^x f(t)\text{d}t
 <li>...</li>
 </ul>
 <h2 id="半球均匀采样">6. 半球均匀采样</h2>
-<p class="note note-primary">
-[参考博客]
-半球均匀采样理论推导：<a href="https://www.bogotobogo.com/Algorithms/uniform_distribution_sphere.php" target="_blank">https://www.bogotobogo.com/Algorithms/uniform_distribution_sphere.php</a>
-</p>
-<p class="note note-primary">
-[参考博客]
-逆变换采样以及常见的圆面/球面采样推导：<a href="https://zhuanlan.zhihu.com/p/622443806" target="_blank">
-https://zhuanlan.zhihu.com/p/622443806</a>
-</p>
+<div class="note note-success">
+            <p>[参考博客1] 半球均匀采样理论推导：<ahref="https://www.bogotobogo.com/Algorithms/uniform_distribution_sphere.php"class="uri">https://www.bogotobogo.com/Algorithms/uniform_distribution_sphere.php</a></p><p>[参考博客2] 逆变换采样以及常见的圆面/球面采样推导：<ahref="https://zhuanlan.zhihu.com/p/622443806"class="uri">https://zhuanlan.zhihu.com/p/622443806</a></p>
+          </div>
 <p>本节将详细讨论如何<strong>在圆面(2D)和球面(3D)上采样</strong>，并对常见的采样思路进行分析</p>
 <p><strong>2D圆面采样</strong></p>
 <ul>
@@ -577,11 +571,9 @@ D_{ggx}(m)=\frac{\alpha^2}{\pi ((m\cdot n)^2 (\alpha^2-1) + 1)^2}
 \]</span></p>
 <p>找到了PDF，即可通过逆采样法来构造对应采样点</p></li>
 <li><p>[题外话]NDF的理解</p>
-<p class="note note-primary">
-<p>[参考博客]
-NDF的相关理解：<a href="https://www.reedbeta.com/blog/hows-the-ndf-really-defined/" target="_blank">
-https://www.reedbeta.com/blog/hows-the-ndf-really-defined/</a></p>
-</p>
+<div class="note note-success">
+            <p>[参考博客] NDF的相关理解：<ahref="https://www.reedbeta.com/blog/hows-the-ndf-really-defined/"class="uri">https://www.reedbeta.com/blog/hows-the-ndf-really-defined/</a></p>
+          </div>
 <p>NDF(D项)并不是在半球上积分为1，而需额外增加一个cos项，即m点乘n，是因为：
 <span class="math display">\[
 \text{d}A_h=D(h)\text{d}\omega_h \cdot A
@@ -688,12 +680,9 @@ PDF 的前提下生成采样点 →
 <p>本文没有探讨的相关技术：</p>
 <ul>
 <li><p>Multiple Importance Sampling - 多重重要性采样</p>
-<p class="note note-primary">
-<p>[参考博客]
-多重重要性采样：<a href="https://zhuanlan.zhihu.com/p/379681777" target="_blank">
-图形学｜Robust：Multiple Importance Sampling 多重重要性采样 -
-kakaroto的文章 - 知乎 https://zhuanlan.zhihu.com/p/379681777</a></p>
-</p></li>
+<div class="note note-success">
+            <p>[参考博客] 多重重要性采样：<ahref="https://zhuanlan.zhihu.com/p/379681777"class="uri">https://zhuanlan.zhihu.com/p/379681777</a></p>
+          </div></li>
 </ul>
 
                 
