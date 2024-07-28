@@ -4,11 +4,36 @@
   
   
   <entry>
+    <title>ECS架构</title>
+    <link href="/2024/07/28/ECS%E6%9E%B6%E6%9E%84/"/>
+    <url>/2024/07/28/ECS%E6%9E%B6%E6%9E%84/</url>
+    
+    <content type="html"><![CDATA[<h1 id="ecs架构">ECS架构</h1>]]></content>
+    
+    
+    <categories>
+      
+      <category>分类</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>标签</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>学习资料汇总</title>
     <link href="/2024/05/28/%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99%E6%B1%87%E6%80%BB/"/>
     <url>/2024/05/28/%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99%E6%B1%87%E6%80%BB/</url>
     
-    <content type="html"><![CDATA[<h1 id="学习资料汇总">学习资料汇总</h1><h2 id="computer-graphics">1. Computer Graphics</h2><ul><li>Miloyep【读书清单】<ul><li>书籍：<a href="https://github.com/miloyip/game-programmer"class="uri">https://github.com/miloyip/game-programmer</a></li></ul></li><li>Games<ul><li>Games 101</li><li>Games 202</li></ul></li></ul><h2 id="unity">2. Unity</h2><p>Catlike Coding【教程】</p><ul><li><p>主页：<a href="https://catlikecoding.com/"class="uri">https://catlikecoding.com/</a></p></li><li><p>Custom SRP：<ahref="https://catlikecoding.com/unity/tutorials/custom-srp/"class="uri">https://catlikecoding.com/unity/tutorials/custom-srp/</a></p></li></ul><h2 id="ue">3. UE</h2><h2 id="linear-algebra">4. Linear Algebra</h2><p>MIT</p><ul><li>B站视频链接：<ahref="https://www.bilibili.com/video/BV16Z4y1U7oU/?spm_id_from=333.337.search-card.all.click&amp;vd_source=710220a93ae411a7e37d5e0b857aca2e"class="uri">https://www.bilibili.com/video/BV16Z4y1U7oU/?spm_id_from=333.337.search-card.all.click&amp;vd_source=710220a93ae411a7e37d5e0b857aca2e</a></li></ul>]]></content>
+    <content type="html"><![CDATA[<h1 id="学习资料汇总">学习资料汇总</h1><h2 id="computer-graphics">1. Computer Graphics</h2><ul><li>Miloyep【读书清单】<ul><li>书籍：<a href="https://github.com/miloyip/game-programmer"class="uri">https://github.com/miloyip/game-programmer</a></li></ul></li><li>Games<ul><li>Games 101</li><li>Games 202</li></ul></li></ul><h2 id="unity">2. Unity</h2><ul><li><p>《Unity Shader入门精要》</p></li><li><p>Catlike Coding【教程】</p><ul><li><p>主页：<a href="https://catlikecoding.com/"class="uri">https://catlikecoding.com/</a></p></li><li><p>Custom SRP：<ahref="https://catlikecoding.com/unity/tutorials/custom-srp/"class="uri">https://catlikecoding.com/unity/tutorials/custom-srp/</a></p></li></ul></li></ul><h2 id="ue">3. UE</h2><h2 id="linear-algebra">4. Linear Algebra</h2><p>MIT</p><ul><li>B站视频链接：<ahref="https://www.bilibili.com/video/BV16Z4y1U7oU/?spm_id_from=333.337.search-card.all.click&amp;vd_source=710220a93ae411a7e37d5e0b857aca2e"class="uri">https://www.bilibili.com/video/BV16Z4y1U7oU/?spm_id_from=333.337.search-card.all.click&amp;vd_source=710220a93ae411a7e37d5e0b857aca2e</a></li></ul>]]></content>
     
     
     <categories>
