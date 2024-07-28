@@ -8,7 +8,7 @@
     <link href="/2024/07/28/ECS%E6%9E%B6%E6%9E%84/"/>
     <url>/2024/07/28/ECS%E6%9E%B6%E6%9E%84/</url>
     
-    <content type="html"><![CDATA[<h1 id="ecs架构">ECS架构</h1>]]></content>
+    <content type="html"><![CDATA[<h1 id="ecs架构">ECS架构</h1><h2 id="引入">1.引入</h2><p>传统继承方案的问题：</p><ul><li>产生菱形继承问题，继承关系混乱</li><li>数据杂糅对缓存不友好</li></ul><p>解决思路：</p><ul><li><strong>组合</strong> -&gt; 继承</li><li>相关数据紧密打包，数据结构采用<strong>POD类型</strong></li></ul><h2 id="ecs">2.ECS</h2><p>实体（Entity）</p><p>组件（Component）</p><p>系统（System）</p><p>签名（Signature）：跟踪记录实体拥有哪些组件</p><p>组件数组：管理不同实体的同一类型组件，增删过程中会动态维护映射关系，并保证数组的连续性</p><h2 id="pros-cons">3.pros &amp; cons</h2><p>ECS优势：适合处理大量Entity的案例</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cpp">ECS:<br>协调器(Coordinator)<br>- Entity Manager -&gt; Entity<br>- Component Manager -&gt; Component<br>- System Manager -&gt; System<br></code></pre></td></tr></table></figure><h2 id="总结">4.总结</h2><h2 id="others">5.Others</h2><div class="note note-success">            <p>[参考博客]一文看懂ECS架构：https://zhuanlan.zhihu.com/p/618971664</p>          </div>]]></content>
     
     
     <categories>
