@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cool-doggo.com/img/wallpaper/wallhaven-gp6gp7.png">
 <meta property="article:published_time" content="2024-08-10T10:01:51.000Z">
-<meta property="article:modified_time" content="2024-08-10T10:17:18.951Z">
+<meta property="article:modified_time" content="2024-08-17T08:09:59.696Z">
 <meta property="article:author" content="CoolDoggo">
 <meta property="article:tag" content="标签">
 <meta name="twitter:card" content="summary_large_image">
@@ -215,7 +215,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          274 字
+          512 字
         
       </span>
     
@@ -261,19 +261,41 @@
                 
                 <h1 id="leetcode-刷题法宝">Leetcode 刷题法宝</h1>
 <blockquote>
-<p>本文总结Leetcode刷题过程中常见的题型，以及如何快速并优美的完成coding</p>
+<p>本文梳理Leetcode刷题过程中遇到的常见题型，并总结如何快速并优雅地完成coding</p>
 </blockquote>
 <h2 id="哨岗">1.哨岗</h2>
-<p>题型：题目通常存在一个判定基准，即哨岗元素。其余元素依次与哨岗元素进行比较，生成结果。哨岗元素通常会交替互换。</p>
-<p>【Leetcode - 56题 -
-合并区间】https://leetcode.cn/problems/merge-intervals/</p>
-<p>题型难点：哨岗元素往往需要首尾特殊处理，添加过多判定条件，容易让代码写的又臭又长</p>
-<p><strong>解决关键</strong>：</p>
+<p>【题型】：通常存在一个判定基准，即哨岗元素。其余元素依次与哨岗元素进行比较，生成结果。哨岗元素通常会交替互换。</p>
+<p>【题型难点】：哨岗题型看似需要首尾特殊处理，添加过多判定条件，容易让代码写的又臭又长</p>
+<p>【<strong>解决关键</strong>】：</p>
 <ul>
 <li>首项特殊判定</li>
 <li>每次都记录过程结果，而不是等待程序闭口</li>
 </ul>
+<p>「Leetcode - 56题 -
+合并区间」https://leetcode.cn/problems/merge-intervals/</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// 合并区间: 二维数组,找到所有合并的区间</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs-built_in">merge</span>(vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt;&amp; intervals) &#123;<br>        <span class="hljs-keyword">if</span>(intervals.<span class="hljs-built_in">size</span>() &lt;= <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> intervals;<br><br>        vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; nums;<br>        std::<span class="hljs-built_in">sort</span>(intervals.<span class="hljs-built_in">begin</span>(), intervals.<span class="hljs-built_in">end</span>());<br><br>        nums.<span class="hljs-built_in">push_back</span>(intervals[<span class="hljs-number">0</span>]); <span class="hljs-comment">// 1.首项特殊判定</span><br><br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt; intervals.<span class="hljs-built_in">size</span>(); ++i)<br>        &#123;<br>            <span class="hljs-keyword">if</span>(nums.<span class="hljs-built_in">back</span>()[<span class="hljs-number">1</span>] &lt; intervals[i][<span class="hljs-number">0</span>])<br>                nums.<span class="hljs-built_in">push_back</span>(intervals[i]);<br>            <span class="hljs-keyword">else</span> <br>                nums.<span class="hljs-built_in">back</span>()[<span class="hljs-number">1</span>] = std::<span class="hljs-built_in">max</span>(intervals[i][<span class="hljs-number">1</span>], nums.<span class="hljs-built_in">back</span>()[<span class="hljs-number">1</span>]); <span class="hljs-comment">// 2.记录过程结果</span><br>        &#125;<br><br>        <span class="hljs-keyword">return</span> nums;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<h2 id="降低空间复杂度---复用">2.降低空间复杂度 - 复用</h2>
+<p>【题型】：在处理一维数组时，通常只涉及单个元素的空间需求；而在处理<strong>二维数组</strong>时，则需要考虑用于记录<strong>行列信息的一维数组</strong>的空间需求。</p>
+<p>【题型难点】：新开辟的空间会导致 O(m+n)
+的空间复杂度。而想要复用现有数据，需要考虑数据相互覆盖问题</p>
+<p>【<strong>解决关键</strong>】：</p>
+<ul>
+<li>数据复用：一维数组是二维数组的一行或一列</li>
+<li>数据覆盖：数据复用时需考虑数据相互覆盖</li>
+</ul>
+<p>「Leetcode -
+零矩阵」https://leetcode.cn/problems/zero-matrix-lcci/solutions/</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs makefile"><span class="hljs-section">关键难点:</span><br>1.记录每行每列是否为0的过程中，容易相互覆盖<br>2.置0的时候，又会相互覆盖<br></code></pre></td></tr></table></figure>
+<hr />
+<h2 id="little-tricks">Little Tricks</h2>
+<ul>
+<li><p>整数除法希望可以ceil或floor，但写起来又不美观</p>
+<ul>
+<li><div class="sourceCode" id="cb1"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> layer <span class="op">=</span> <span class="bu">std::</span>ceil<span class="op">(</span>n <span class="op">/</span> <span class="fl">2.</span><span class="bu">f</span><span class="op">);</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> layer <span class="op">=</span> <span class="op">(</span>n <span class="op">+</span> <span class="dv">1</span><span class="op">)</span> <span class="op">/</span> <span class="dv">2</span><span class="op">;</span> <span class="co">// 优雅的层数计算方式</span></span></code></pre></div></li>
+</ul></li>
+</ul>
 
                 
               </div>
